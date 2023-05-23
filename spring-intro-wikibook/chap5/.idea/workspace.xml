@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="31f552f6-b1e6-4382-8d22-1d9b484a23d0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/src/main/java/com/example/demo/ThymeleafSampleApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/src/main/java/com/example/demo/controller/ThymeleafController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/src/main/java/com/example/demo/entity/Member.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/src/main/resources/templates/useThymeleaf.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ThymeleafSample/src/test/java/com/example/demo/ThymeleafSampleApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2Pu9TseBTTPg8aHtClLbAC86rOt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="31f552f6-b1e6-4382-8d22-1d9b484a23d0" name="Changes" comment="" />
+      <created>1684296110344</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684296110344</updated>
+    </task>
+    <servers />
+  </component>
+</project>

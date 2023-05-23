@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf Sample</title>
+</head>
+<body>
+    <!-- 문자 직접 삽입-->
+    <h1 th:text="'hello world'"> 삽입될 위치 </h1>
+    <!-- 인라인 처리 -->
+    <h1>안녕하세요! [[${name}]]씨</h1>
+    <!-- 값 결합-->
+    <h1 th:text="'오늘의 날씨는 ' + '맑음 ' + '입니다.'"></h1>
+
+    <hr>
+    <!-- 값 결합(리터럴 치환)-->
+    <h1 th:text="|안녕하세요 ${name}씨|"> 삽입될 위치 </h1>
+    <!-- 지역변수-->
+    <div th:with="a=1, b=1">
+        <span th:text="|${a} + ${b} = ${a + b}|"></span>
+    </div>
+    <!-- 비교연산-->
+    <span th:text="1 > 10"></span>
+    <span th:text="1 < 10"></span>
+    <span th:text="1 >= 10"></span>
+    <span th:text="1 <= 10"></span>
+    <span th:text="1 == 10"></span>
+    <span th:text="1 == 10"></span>
+    <span th:text="길동 == 길동"></span>
+    <span th:text="길동 != 길동"></span>
+
+    <hr>
+    <!--조건 연산자-->
+    <p th:text="${name} == '이순신' ? '이순신입니다.' : '이순신이 아닙니다.'"></p>
+    <!--조건 분기-->
+    <th:block th:if="${name} == '이순신'">
+        <p>이순신이 맞습니다!</p>
+    </th:block>
+    <!--조건 분기-->
+    <th:block th:unless="${name} == '영희'">
+        <p>영희가 아닙니다!</p>
+    </th:block>
+
+    <!-- switch -->
+    <div th:switch="${name}">
+        <p th:case="이순신" th:text="|${name}입니다.|"></p>
+        <p th:case="영희" th:text="|${name}입니다.|"></p>
+        <p th:case="철수" th:text="|${name}입니다.|"></p>
+        <p th:case="*">명부에 없습니다.</p>
+    </div>
+
+    <!-- 11. 참조 (데이터를 결합한 객체)-->
+    .로 접근: <span th:text="${mb.id}">ID</span> - <span th:text="${mb.name}">NAME</span><br>
+    []로 접근: <span th:text="${mb['id']}">ID</span> - <span th:text="${mb['name']}">NAME</span><br>
+
+    <!-- 12. 참조 (object)-->
+    <th:block th:object="${mb}">
+        .로 접근: <span th:text="*{id}">ID</span> - <span th:text="*{name}">NAME</span><br>
+        []로 접근: <span th:text="*{['id']}">ID</span> - <span th:text="*{['name']}">NAME</span><br>
+    </th:block>
+    <br>
+
+    <!-- 13. 참조(리스트)-->
+    <span th:text="${list[0]} "></span>
+    <span th:text="${list[1]} "></span>
+    <span th:text="${list[2]} "></span>
+    <span th:text="${list[3]} "></span>
+    <br>
+
+    <!-- 14. 참조(맵) -->
+    .으로 접근: <span th:text="${map.hong.name}">이름</span> - <span th:text="${map.kim.name}">이름</span><br>
+    []으로 접근: <span th:text="${map['hong']['name']}">이름</span> - <span th:text="${map['kim']['name']}">이름</span><br>
+    <br>
+
+    <!-- 15. 반복 -->
+    <th:block th:each="member : ${members}">
+        <p>[[${member.id}]] : [[${member.name}]]</p>
+    </th:block>
+
+    <!--16. 반복 상태-->
+    <th:block th:each="member, s : ${members}" th:object="${member}">
+        <p>
+        index->[[${s.index}]], count->[[${s.count}]],
+        size->[[${s.size}]], current->[[${s.current}]],
+        even->[[${s.even}]], odd->[[${s.odd}]],
+        first->[[${s.first}]], last->[[${s.last}]],
+        [[*{id}]], [[*{name}]]
+        </p>
+    </th:block>
+
+    <!--17. 유틸리티 객체 numbers -->
+    <div th:with="a=1000000, b=123456.789">
+        정수 형식 : <span th:text="${#numbers.formatInteger(a, 3, 'COMMA')}"></span><br>
+        부동소수점 형식 : <span th:text="${#numbers.formatDecimal(b, 3, 'COMMA', 2, 'POINT')}"></span><br>
+    </div>
+    <br>
+
+    <!-- 유틸리티 객체 dates-->
+    <div th:with="today=${#dates.createNow()}">
+        yyyy/MM/dd 형식 : <span th:text="${#dates.format(today, 'yyyy/MM/dd')}"></span><br>
+        <!-- format 함수의 포멧문자열에서 mm을 사용하면 이상한 값이 나옴. 이유가 무엇인지 찾아보기-->
+        yyyy년 MM월 dd일 형식 : <span th:text="${#dates.format(today, 'yyyy년 MM월 dd일')}"></span><br>
+        yyyy년 : <span th:text="${#dates.year(today)}"></span><br>
+        MM월: <span th:text="${#dates.month(today)}"></span><br>
+        dd일 : <span th:text="${#dates.day(today)}"></span><br>
+        <!-- 정수값이 어느 요일에 해당하는지 찾아보기-->
+        요일 : <span th:text="${#dates.dayOfWeek(today)}"></span><br>
+    </div>
+    <br>
+
+    <!-- 유틸리티 객체 strings-->
+    <div th:with="str1 ='abcdef'">
+        대문자 변환: [[${#strings.toUpperCase(str1)}]] <br>
+        공문자 판정: [[${#strings.isEmpty(str1)}]] <br>
+        길이: [[${#strings.length(str1)}]] <br>
+    </div>
+    <br>
+
+    <h1>Fragment를 아래에 삽입하기</h1>
+    <div th:insert="fragment :: one"></div>
+    <div th:replace="fragment :: three"></div>
+
+</body>
+</html>
