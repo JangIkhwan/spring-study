@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>단일 항목 검사 계산기 확인 화면</title>
+</head>
+<body>
+  <h1>계산 결과</h1>
+  <h3 th:text="|${calcForm.leftNum}+${calcForm.rightNum}=${result}|"></h3>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>단일항목 검사를 이용한 계산기 입력 화면</title>
+</head>
+<body>
+<!-- 컨텍스트 경로와 @{}에 대해 알아보기, th:field에 대해 알아보기-->
+    <form th:action="@{/calc}" method="post" th:object="${calcForm}">
+        <input type="text" th:field="*{leftNum}">
+        +
+        <input type="text" th:field="*{rightNum}">
+        <input type="submit" value="계산">
+
+        <!-- #fields에 대해 알아보기-->
+        <!-- 주의! : form 태그 내에 에러를 표시할 곳에 추가해야 함 -->
+        <ul th:if="${#fields.hasErrors('*')}">
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+    </form>
+
+
+</body>
+</html>
