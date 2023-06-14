@@ -73,9 +73,9 @@ public class QuizServiceImplTest {
 
     @Test
     void 랜덤퀴즈선택(){
-        Optional<Quiz> quiz = service.selectOneRandomQuiz();
-        if(quiz.isPresent()) {
-            System.out.println(quiz);
+        Optional<Quiz> quizOpt = service.selectOneRandomQuiz();
+        if(quizOpt.isPresent()) {
+            System.out.println(quizOpt.get());
         }
         System.out.println("---랜덤 퀴즈 선택 완료---");
     }
