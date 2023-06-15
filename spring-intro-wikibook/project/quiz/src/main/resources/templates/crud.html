@@ -7,19 +7,25 @@
 <body>
     <h1>퀴즈 어플리케이션 O/X</h1>
     <h3 th:text="${title}">제목</h3>
+    <div th:if="${complete}" th:text="${complete}" style="color:blue"></div>
     <div>
         <!-- 타임리프 문법 사용시 ${} 사용하기!-->
         <form method="post" th:action="${quizForm.newQuiz} ? @{/quiz/insert} : @{quiz/update}" th:object="${quizForm}">
             <label>퀴즈 내용:</label>
             <br>
-            <textarea row="5" col="50" th:field="*{question}"></textarea>
+            <textarea row="5" col="50" th:field="*{question}" margin="10"></textarea>
+            <!--<div th:if="${#fields.hasErrors('question')}" th:text="${#fields.errors('question')}"></div>-->
+            <div th:if="${#fields.hasErrors('question')}" th:errors="*{question}" style="color:red"></div>
             <br>
             <label>퀴즈 정답:</label>
+            <br>
             <input type="radio" value="true" th:field="*{answer}"> O
             <input type="radio" value="false" th:field="*{answer}"> X
             <br>
             <label>작성자: </label>
             <input type="text" th:field="*{author}">
+            <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color:red"></div>
+            <br>
             <input type="submit" value="송신">
         </form>
     </div>

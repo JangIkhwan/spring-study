@@ -13,8 +13,8 @@ public class QuizForm {
     private Integer id;
     @NotBlank
     private String question;
-    private boolean answer;
+    private Boolean answer;
     @NotBlank
     private String author;
-    private boolean newQuiz;
+    private Boolean newQuiz;
 }
