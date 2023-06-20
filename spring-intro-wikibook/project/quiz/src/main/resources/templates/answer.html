@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>정답 화면</title>
+</head>
+<body>
+  <h1>OX 퀴즈 어플리케이션 : 해답</h1>
+  <h3 style="color:red" th:text="${msg}">
+<!--    <span th:if="${answer}==${result}">정답입니다.</span>-->
+<!--    <span th:unless="${answer}==${result}">오답입니다.</span>-->
+  </h3>
+  <a th:href="@{/quiz/play}">리플레이</a>
+  <a th:href="@{/quiz}">CRUD 화면으로 돌아가기</a>
+</body>
+</html>

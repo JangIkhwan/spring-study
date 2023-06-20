@@ -10,7 +10,7 @@
     <div th:if="${complete}" th:text="${complete}" style="color:blue"></div>
     <div>
         <!-- 타임리프 문법 사용시 ${} 사용하기!-->
-        <form method="post" th:action="${quizForm.newQuiz} ? @{/quiz/insert} : @{quiz/update}" th:object="${quizForm}">
+        <form method="post" th:action="${quizForm.newQuiz} ? @{/quiz/insert} : @{/quiz/update}" th:object="${quizForm}">
             <label>퀴즈 내용:</label>
             <br>
             <textarea row="5" col="50" th:field="*{question}" margin="10"></textarea>
@@ -26,42 +26,50 @@
             <input type="text" th:field="*{author}">
             <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color:red"></div>
             <br>
+
+            <input type="hidden" th:field="*{id}">
             <input type="submit" value="송신">
         </form>
     </div>
     <hr>
-    <h3>등록된 퀴즈 목록 <a th:href="@{quiz/play}">플레이</a></h3>
-    <div th:unless="${#lists.isEmpty(list)}">
-        <table border="1">
-            <tr>
-                <th>번호</th>
-                <th>내용</th>
-                <th>해답</th>
-                <th>작성자</th>
-                <th>변경</th>
-                <th>삭제</th>
-            </tr>
-            <tr th:each="data : ${list}" th:object="${data}">
-                <td th:text="*{id}">번호</td>
-                <td th:text="*{question}">내용</td>
-                <td th:text="*{answer} == true ? O : X">해답</td>
-                <td th:text="*{author}">작성자</td>
-                <td>
-                    <form method="get" th:action="@{quiz/{id}(id=*{id})}">
-                        <input type="submit" value="변경">
-                    </form>
-                </td>
-                <td>
-                    <form method="post" th:action="@{quiz/delete}">
-                        <input type="hidden" name="id" value="*{id}">
-                        <input type="submit" value="삭제">
-                    </form>
-                </td>
-            </tr>
-        </table>
+    <div th:if="${quizForm.newQuiz}">
+        <h3>등록된 퀴즈 목록 <a th:href="@{/quiz/play}">플레이</a></h3>
+        <p th:if="${delComplete}" th:text="${delComplete}" style="color : blue"></p>
+        <div th:unless="${#lists.isEmpty(list)}">
+            <table border="1">
+                <tr>
+                    <th>번호</th>
+                    <th>내용</th>
+                    <th>해답</th>
+                    <th>작성자</th>
+                    <th>변경</th>
+                    <th>삭제</th>
+                </tr>
+                <tr th:each="data : ${list}" th:object="${data}">
+                    <td th:text="*{id}">번호</td>
+                    <td th:text="*{question}">내용</td>
+                    <td th:text="*{answer} == true ? O : X">해답</td>
+                    <td th:text="*{author}">작성자</td>
+                    <td>
+                        <form method="get" th:action="@{/quiz/{id}(id=*{id})}">
+                            <input type="submit" value="변경">
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" th:action="@{/quiz/delete}">
+                            <input type="hidden" name="id" th:value="*{id}"> <!--th:value 에 주의-->
+                            <input type="submit" value="삭제">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${#lists.isEmpty(list)}">
+            등록된 퀴즈가 없습니다.
+        </div>
     </div>
-    <div th:if="${#lists.isEmpty(list)}">
-        등록된 퀴즈가 없습니다.
+    <div th:unless="${quizForm.newQuiz}">
+        <a th:href="@{/quiz}">CRUD 화면으로 돌아가기</a>
     </div>
 </body>
 </html>
